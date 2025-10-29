@@ -93,4 +93,4 @@ Este repositorio contiene una plataforma web completa para administrar clientes,
 
 ## 📄 Licencia
 
-Este proyecto se distribuye bajo la licencia MIT. Eres libre de adaptarlo y extenderlo según las necesidades de tu agencia de turismo.
+Este proyecto se distribuye bajo la licencia MIT. NO es de uso coemrcial ni se admiten copias o plagios ni adaptarlo y extenderlo.
