@@ -1,0 +1,46 @@
+version: '3.9'
+
+services:
+  db:
+    image: mysql:8.3
+    environment:
+      MYSQL_DATABASE: agencia
+      MYSQL_USER: agencia_user
+      MYSQL_PASSWORD: agencia_pass
+      MYSQL_ROOT_PASSWORD: root_pass
+    volumes:
+      - db_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+
+  backend:
+    build: ./backend
+    environment:
+      PORT: 4000
+      JWT_SECRET: supersecretkey
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_NAME: agencia
+      DB_USER: agencia_user
+      DB_PASSWORD: agencia_pass
+      AWS_REGION: us-east-1
+      AWS_ACCESS_KEY_ID: change-me
+      AWS_SECRET_ACCESS_KEY: change-me
+      AWS_S3_BUCKET: agencia-files
+      WHATSAPP_API_URL: https://graph.facebook.com/v18.0/YOUR_PHONE_NUMBER_ID/messages
+      WHATSAPP_ACCESS_TOKEN: change-me
+      EMAIL_SMTP_HOST: smtp.example.com
+      EMAIL_SMTP_PORT: 587
+      EMAIL_SMTP_USER: user
+      EMAIL_SMTP_PASS: pass
+      EMAIL_FROM: agencia@example.com
+    ports:
+      - "4000:4000"
+    depends_on:
+      - db
+    volumes:
+      - ./backend/src:/app/src
+      - ./backend/.env.example:/app/.env
+
+volumes:
+  db_data:
